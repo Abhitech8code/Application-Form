@@ -1,105 +1,38 @@
 # FCC-Quotes-Machine
-Diff color Quotes Machine use in HTML CSS JAVASCRIPT Frontend development used this project
-/* eslint-disable max-len */
-// eslint-disable-next-line no-unused-vars
-const projectName = 'random-quote-machine';
-let quotesData;
+# FCC Quotes Machine
 
-/*
-  Code by AbhiCoder08
-  Modified by Todd Chaffee to use Camper gist for JSON Quote data.
-*/
+The FCC Quotes Machine project is a web application that generates random quotes and allows users to share them on social media. It was developed as a part of the FreeCodeCamp (FCC) curriculum and serves as a practical exercise in using HTML, CSS, and JavaScript.
 
-var colors = [
-  '#16a085',
-  '#27ae60',
-  '#2c3e50',
-  '#f39c12',
-  '#e74c3c',
-  '#9b59b6',
-  '#FB6964',
-  '#342224',
-  '#472E32',
-  '#BDBB99',
-  '#77B1A9',
-  '#73A857'
-];
-var currentQuote = '',
-  currentAuthor = '';
+## Features
 
-function getQuotes() {
-  return $.ajax({
-    headers: {
-      Accept: 'application/json'
-    },
-    url: 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json',
-    success: function (jsonQuotes) {
-      if (typeof jsonQuotes === 'string') {
-        quotesData = JSON.parse(jsonQuotes);
-        console.log('quotesData');
-        console.log(quotesData);
-      }
-    }
-  });
-}
+- Random Quote Generation: The application fetches quotes from an external API and displays them randomly each time the page is loaded or the "New Quote" button is clicked.
+- Share on Social Media: Users can share their favorite quotes on Twitter by clicking the "Tweet" button, which opens a Twitter share dialog with the selected quote pre-populated.
 
-function getRandomQuote() {
-  return quotesData.quotes[
-    Math.floor(Math.random() * quotesData.quotes.length)
-  ];
-}
+## Technologies Used
 
-function getQuote() {
-  let randomQuote = getRandomQuote();
+- HTML: Used for creating the structure and content of the web page.
+- CSS: Used for styling the user interface and making it visually appealing.
+- JavaScript: Used for fetching quotes from the API, handling user interactions, and dynamically updating the page.
 
-  currentQuote = randomQuote.quote;
-  currentAuthor = randomQuote.author;
+## Getting Started
 
-  $('#tweet-quote').attr(
-    'href',
-    'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' +
-      encodeURIComponent('"' + currentQuote + '" ' + currentAuthor)
-  );
+To get started with the FCC Quotes Machine project, follow these steps:
 
-  $('#tumblr-quote').attr(
-    'href',
-    'https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=' +
-      encodeURIComponent(currentAuthor) +
-      '&content=' +
-      encodeURIComponent(currentQuote) +
-      '&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button'
-  );
+1. Clone the repository: Use the command `git clone https://github.com/your-username/FCC-Quotes-Machine.git` to clone the project to your local machine.
+2. Open the index.html file: Open the index.html file in your preferred web browser to view and interact with the application.
+3. Explore and customize: Feel free to explore the codebase, make changes, and customize the application according to your preferences.
 
-  $('.quote-text').animate({ opacity: 0 }, 500, function () {
-    $(this).animate({ opacity: 1 }, 500);
-    $('#text').text(randomQuote.quote);
-  });
 
-  $('.quote-author').animate({ opacity: 0 }, 500, function () {
-    $(this).animate({ opacity: 1 }, 500);
-    $('#author').html(randomQuote.author);
-  });
 
-  var color = Math.floor(Math.random() * colors.length);
-  $('html body').animate(
-    {
-      backgroundColor: colors[color],
-      color: colors[color]
-    },
-    1000
-  );
-  $('.button').animate(
-    {
-      backgroundColor: colors[color]
-    },
-    1000
-  );
-}
+## Contributions
 
-$(document).ready(function () {
-  getQuotes().then(() => {
-    getQuote();
-  });
+Contributions to the FCC Quotes Machine project are welcome! If you have any suggestions, improvements, or bug fixes, please open an issue or submit a pull request. Your contributions will be greatly appreciated.
 
-  $('#new-quote').on('click', getQuote);
-});
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to use, modify, and distribute the code as per the terms of the license.
+
+## Acknowledgements
+
+Special thanks to FreeCodeCamp for providing the project idea and educational resources.
+
